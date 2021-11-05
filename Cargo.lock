@@ -12,7 +12,7 @@ dependencies = [
 [[package]]
 name = "blinkrs"
 version = "1.0.2"
-source = "git+https://github.com/coreyja/blinkrs.git?branch=ca/main/m2#010edbd09e4106859b947036851cdc9eb6f5580c"
+source = "git+https://github.com/coreyja/blinkrs.git?branch=ca/main/m2#a622745bbe30e989d620588b0216753ea7999fb5"
 dependencies = [
  "rusb",
 ]
