@@ -70,9 +70,10 @@ dependencies = [
 [[package]]
 name = "blinkrs"
 version = "1.0.2"
-source = "git+https://github.com/coreyja/blinkrs.git?branch=ca/main/m2#003ec953f02d13d32eb385fa88d322219d67591b"
+source = "git+https://github.com/coreyja/blinkrs.git?branch=ca/main/m2#3f97d0e453aa900032104dd385cac587092b1b5d"
 dependencies = [
  "rusb",
+ "thiserror",
 ]
 
 [[package]]
@@ -377,9 +378,9 @@ dependencies = [
 
 [[package]]
 name = "serde_json"
-version = "1.0.68"
+version = "1.0.69"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0f690853975602e1bfe1ccbf50504d67174e3bcf340f23b5ea9992e0587a52d8"
+checksum = "e466864e431129c7e0d3476b92f20458e5879919a0596c6472738d9fa2d342f8"
 dependencies = [
  "itoa",
  "ryu",
@@ -416,6 +417,26 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-xid",
+]
+
+[[package]]
+name = "thiserror"
+version = "1.0.30"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "854babe52e4df1653706b98fcfc05843010039b406875930a70e4d9644e5c417"
+dependencies = [
+ "thiserror-impl",
+]
+
+[[package]]
+name = "thiserror-impl"
+version = "1.0.30"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "aa32fd3f627f367fe16f893e2597ae3c05020f8bba2666a4e6ea73d377e5714b"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]
