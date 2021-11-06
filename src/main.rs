@@ -1,5 +1,4 @@
-use std::error::Error;
-use std::{boxed::Box, time::Duration};
+use std::time::Duration;
 
 use blinkrs::{Blinkers, Color, LedNum, Pattern, PatternLine};
 
@@ -60,11 +59,9 @@ struct Snake {
     color: Color,
 }
 
-fn main() -> Result<()> {
-    tracing_subscriber::fmt::init();
-
+fn play_leds_for_game(game_id: &str) -> Result<()> {
     let json: BattlesnakeEngineGameResponse =
-        ureq::get("https://engine.battlesnake.com/games/5cc175d3-d928-43e5-8adc-a6270813dad0")
+        ureq::get(&format!("https://engine.battlesnake.com/games/{}", game_id))
             .call()?
             .into_json()?;
     info!(?json, "Got response from engine");
@@ -107,4 +104,24 @@ fn main() -> Result<()> {
     blinkers.play_pattern(pattern, 0)?;
 
     Ok(())
+}
+
+#[macro_use]
+extern crate rocket;
+
+use rocket::{
+    http::Status,
+    response::{status::Created, Debug},
+};
+
+#[get("/game/<game_id>/start")]
+fn start_game(game_id: &str) -> Result<Status, Debug<eyre::ErrReport>> {
+    play_leds_for_game(game_id).with_context(|| "Things went badly")?;
+
+    Ok(Status::Ok)
+}
+
+#[launch]
+fn rocket() -> _ {
+    rocket::build().mount("/", routes![start_game])
 }
